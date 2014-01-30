@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="reset.css" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="favicon.ico">
+
+    <style type="text/css">
+    body {
+      font-family: sans-serif;
+    }
+  
+      .main {
+      border: 1px solid black;
+      box-shadow: 10px 10px 5px #888;
+      border-radius: 12px;
+      padding: 20px;
+      background-color: #ddd;
+      margin: 25px;
+      width: 450px;
+      margin-left:auto;
+      margin-right:auto;  
+    }
+    
+    .logo {
+      width:275px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      padding: 15px;
+    }
+    
+    .container {
+      -webkit-perspective: 300; perspective: 300;
+    }
+  </style>
+  </head>
+  
+
+  <body>
+      <p>You are current using: <div id="os">No Input Received</div></p>
+
+
+ <!--    <div class="wrapper">
+      <div id="header" style="text-align: center;">
+          <h1><span class="r">O</span>nline <span class="g">S</span>tore</h1>
+      </div>
+
+      <div id="eebae-listing">
+        <p>Create a New Listing</p>
+        <form name="myform" action="javascript:addListing()">
+          <div class="row">
+            <label>Author:</label>  <input id="author-input" name="Author" type="text" placeholder="Harold"/> 
+          </div>
+          <div class="row">
+            <label>Description:</label>  <input id="desc-input" name="Desc" type="text" placeholder="A blue car..."/>
+          </div>
+          <div class="row">
+            <label>Price:</label>  <input id="price-input" name="Price" type="text" placeholder="3133.70"/>
+          </div>
+          <div class="row right">
+            <input id="submitButton" name="Submit"  type="submit" value="Add Listing"/>
+          </div>
+        </form>
+      </div> -->
+
+      <ul class="listings"></ul>
+
+    </div>
+
+
+  <div class="main">
+      <h2>Device Orientation</h2>
+      <table>
+        <tr>
+          <td>Event Supported</td>
+          <td id="doEvent"></td>
+        </tr>
+        <tr>
+          <td>Tilt Left/Right [gamma]</td>
+          <td id="doTiltLR"></td>
+        </tr>
+        <tr>
+          <td>Tilt Front/Back [beta]</td>
+          <td id="doTiltFB"></td>
+        </tr>
+        <tr>
+          <td>Direction [alpha]</td>
+          <td id="doDirection"></td>
+        </tr>
+      </table>
+  </div>
+  
+  <div class="container" style="-webkit-perspective: 300; perspective: 300;">
+    <img src="html5_logo.png" id="imgLogo" class="logo">
+  </div>
+  
+  <script type="text/javascript">
+  
+  </script>
+
+
+	<script src="jquery-1.9.0.js"></script>
+	<script src="eebae.js"></script>
+  <script src="accel.js"></script>
+
+	</body>
+</html>

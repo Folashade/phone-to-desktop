@@ -1,3 +1,7 @@
+$( document ).ready(function() {
+
+  var phone = new Object({posX:0, posY:0, posZ:20});
+
   init();
     var count = 0;
 
@@ -6,8 +10,140 @@
   // OSName= navigator.appVersion;
 
 
+
+  
+
+
+function refresh(){
+
+
+var tmp1 = $('#doTiltFB').html();
+// console.log(tmp1);
+var local = parseInt(tmp1);
+// console.log("local")
+// console.log(local)
+// console.log(local>0)
+  // $('body').css('background-color','purple');  
+  if (local>0){
+    // socket.emit('change', { upTilt: upTilt});
+    // socket.broadcast.emit('change', { upTilt: upTilt});
+
+    // console.log('tilted');
+
+    $("#tilted").html(local); 
+    $('body').css('background-color','purple');  
+
+  }
+    if (local<0){
+    // socket.emit('change', { upTilt: upTilt});
+    // socket.broadcast.emit('change', { upTilt: upTilt});
+
+    // console.log('tilted');
+
+    $("#tilted").html(local); 
+    $('body').css('background-color','pink');  
+
+
+
+  }
+
+}
+
+setInterval(refresh, 500);
+
+
+
+
+
+
+
+
+  console.log( "ready!" );
+
+    var socket = io.connect('/');
+
+
+  // var socket = io.connect('/');
+
+  socket.on('players', function (data) {
+    // console.log(data);
+    $("#numPlayers").text(data.number);
+  });
     
-  function init() {
+  socket.on('playerNameUpdate', function (data) {
+    // console.log(data);
+    var players = "<ul>";
+    for(var i=0; i < data.listOfPlayers.length; i++)
+    players+="<li>"+data.listOfPlayers[i]+"</li>";
+    players+="</ul>";
+    $("#playerList").html(players); 
+    // console.log(players);
+  });
+
+
+  $("#submitButton").click(function(){
+    socket.emit('playerNameAdded', { playerName : $("#playerName").val()});
+    console.log($("#playerName").val());
+  });
+
+  socket.on('phoneDataUpdateOnPage', function (data) {
+     // console.log(data);
+    // console.log(data.phone.posX)
+    
+    $("#ltr").html(data.phone.phone.posX); 
+    $("#ftb").html(data.phone.phone.posY); 
+    $("#posZ").html(data.phone.phone.posZ); 
+
+    var winH = $(window).height();
+
+    var initPosX = $("#ball").offset().left; 
+    var deltaX = initPosX + data.phone.phone.posX;
+    if ((deltaX >=5) && (deltaX < 1000))
+      $("#ball").css('left', deltaX);
+
+    // var initPosX = $("#ball").offset().left; 
+    var deltadir = data.phone.phone.posZ;
+    // // if (deltadir>=0 && deltadir<90)
+    // if (deltadir>=350)                //left
+    //   {var deltaX = initPosX - 0.1*(360-(deltadir))}
+    // if(deltadir>0 && deltadir<170) // left
+    //   {var deltaX = initPosX - 0.1*deltadir;}
+    // if (deltadir < 350 && deltadir>= 200)         // right
+    //   {var deltaX = initPosX + 0.1*(360-(deltadir))}
+    // if (deltaX < 990)
+    //   $("#ball").css('left', deltaX);
+    
+    var initPosY = $("#ball").offset().top; 
+    var deltaY = initPosY - 1*data.phone.phone.posY;
+    if ((deltaY >=50) && (deltaY < 730))
+      $("#ball").css('top', deltaY);
+    
+    var deltadir = data.phone.phone.posZ;
+    if(deltadir>0 && deltadir<170 && (data.phone.phone.posX <= 2)) // left
+      {var deltaX = initPosX - 25;}
+    if(deltadir<=360 && deltadir>270 && (data.phone.phone.posX >= 2)) // right
+      {var deltaX = initPosX + 25;}
+
+    // console.log(deltadir)
+
+    // debugger;
+    // console.log(players);
+  });
+
+
+  function updateDesktop(ltr, ftb, dir){
+    phone.posX = ltr;
+    phone.posY = ftb; 
+    phone.posZ = dir;
+    console.log("PHONE:");
+
+    socket.emit('change', {phone : phone});
+    // console.log(phone);
+  }
+
+
+
+function init() {
     var OSName = "Unknown OS";
 
     if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
@@ -18,7 +154,7 @@
 
     $("#os").html(OSName);
 
-      if (OSName == "Android") {
+      // if (OSName == "Android") {
       if (window.DeviceOrientationEvent) {
         document.getElementById("doEvent").innerHTML = "DeviceOrientation";
         // Listen for the deviceorientation event and handle the raw data
@@ -34,6 +170,10 @@
           
           // call our orientation event handler
           deviceOrientationHandler(tiltLR, tiltFB, dir);
+
+          // console.log(eventData);
+          // debugger;
+
           }, false);
       } else {
         document.getElementById("doEvent").innerHTML = "Not supported on your device or browser.  Sorry."
@@ -50,47 +190,21 @@
       logo.style.webkitTransform = "rotate("+ tiltLR +"deg) rotate3d(1,0,0, "+ (tiltFB*-1)+"deg)";
       logo.style.MozTransform = "rotate("+ tiltLR +"deg)";
       logo.style.transform = "rotate("+ tiltLR +"deg) rotate3d(1,0,0, "+ (tiltFB*-1)+"deg)";
+
+      if (OSName == "Android") {
+      $("#posZ").html(Math.round(dir)); // bypassed some error... 
+        updateDesktop(Math.round(tiltLR), Math.round(tiltFB), Math.round(dir));
+      }
     }
     
     
     // Some other fun rotations to try...
     //var rotation = "rotate3d(0,1,0, "+ (tiltLR*-1)+"deg) rotate3d(1,0,0, "+ (tiltFB*-1)+"deg)";
     //var rotation = "rotate("+ tiltLR +"deg) rotate3d(0,1,0, "+ (tiltLR*-1)+"deg) rotate3d(1,0,0, "+ (tiltFB*-1)+"deg)";
-  }
+  // } // if android end
 } 
 
 
-function refresh(){
 
-console.log( "ready!" );
+});
 
-var tmp1 = $('#doTiltFB').html();
-console.log(tmp1);
-var local = parseInt(tmp1);
-console.log("local")
-console.log(local)
-console.log(local>0)
-  // $('body').css('background-color','purple');  
-  if (local>75){
-    // socket.emit('change', { upTilt: upTilt});
-    // socket.broadcast.emit('change', { upTilt: upTilt});
-
-    console.log('tilted');
-
-    $("#tilted").html(local); 
-    $('body').css('background-color','purple');  
-
-  }
-    if (local<75){
-    // socket.emit('change', { upTilt: upTilt});
-    // socket.broadcast.emit('change', { upTilt: upTilt});
-
-    console.log('tilted');
-
-    $("#tilted").html(local); 
-    $('body').css('background-color','pink');  
-
-  }
-}
-
-setInterval(refresh, 500);

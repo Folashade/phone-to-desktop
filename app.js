@@ -1,11 +1,28 @@
 /** // SETTING UP BACKEND // **/
 
-var express = require("express"); // imports express
-var app = express();        // create a new instance of express
+// var express = require("express"); // imports express
+  // , server = http.createServer(app)
 
-// imports the fs module (reading and writing to a text file)
+
+// var app = express();        // create a new instance of express
+
+// // imports the fs module (reading and writing to a text file)
+// var http = require('http');
+// var fs = require("fs");
+// var path = require("path");
+// var io = require('socket.io').listen(app);
+
+
+var express = require("express");
+var http = require('http');
+var app = express();
 var fs = require("fs");
 var path = require("path");
+
+
+
+
+
 
 // the bodyParser middleware allows us to parse the
 // body of a request
@@ -139,6 +156,7 @@ app.get("/static/:staticFilename", function (request, response) {
     response.sendfile("static/" + request.params.staticFilename);
 });
 
+
 function initServer() {
   // When we start the server, we must load the stored data
   var defaultList = "[]";
@@ -147,13 +165,59 @@ function initServer() {
   });
 }
 
+// var io = require("socket.io").listen(5555);
+
 // Finally, initialize the server, then activate the server at port 8889
 initServer();
-app.listen(5555);
-
+// app.listen(5555);
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+server.listen(5555)
 
 /************* auto open window *************/
-setTimeout(function() {
- var spawn = require('child_process').spawn
- spawn('open', ['http://localhost:5555']);
-}, 500);
+// setTimeout(function() {
+//  var spawn = require('child_process').spawn
+//  spawn('open', ['http://localhost:5555']);
+// }, 500);
+
+
+
+// exports.init = function(io) {
+  var currentPlayers = 0;
+  var playerList = [];
+  var upTilt = 0;
+  // var phone = new Object({posX:0, posY:0,posZ:0});
+
+  io.sockets.on('connection', function (socket) {
+    ++currentPlayers;
+    socket.emit('players', { number: currentPlayers});
+    socket.broadcast.emit('players', { number: currentPlayers});
+    
+    socket.on('disconnect', function () {
+      --currentPlayers;
+      socket.broadcast.emit('players', { number: currentPlayers});
+    });
+    
+    socket.on('playerNameAdded', function (data) {
+        playerList.push(data.playerName);
+      console.log("emitted from client");
+      socket.emit('playerNameUpdate', { listOfPlayers: playerList});
+      socket.broadcast.emit('playerNameUpdate', { listOfPlayers: playerList});
+    });
+
+    // socket.emit('tiltUp', { upTilt: upTilt});
+    // socket.broadcast.emit('tiltUp', { upTilt: upTilt});
+    socket.on('change', function (data) {
+      // playerList.push(data.playerName);
+      console.log("change in server");
+      console.log(data);
+      socket.emit('phoneDataUpdateOnPage', { phone: data});
+      socket.broadcast.emit('phoneDataUpdateOnPage', { phone: data});
+    });
+
+  }); 
+// }
+
+// console.log(io)
+  // var socket = io.connect('/');
+

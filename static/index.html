@@ -33,6 +33,30 @@
     .container {
       -webkit-perspective: 300; perspective: 300;
     }
+
+    #phone-data {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 20px;
+    }
+
+    #phone-data li{
+      background-color: #335388;
+    }
+
+    #ball {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      border-radius: 50px;
+      z-index: 100;
+      border: 1px solid #fff;
+      left: 300px;
+      top: 300px;
+      webkitTransition:all .1s ease-in;
+    }
   </style>
   </head>
   
@@ -40,6 +64,22 @@
   <body>
       <p>You are current using: <div id="os">No Input Received</div></p>
 
+    <p> There are currently <span id="numPlayers">no</span> players.</p>
+    
+      <input type="text" id="playerName" name="playerName"></input>
+      <input type="button" id="submitButton" value="Submit"></input>
+    <div id="playerList"></div>
+
+    <div id="ball"></div>
+
+    <div id="phone-data">
+      <ul>
+        <li id="none">Phone</li>
+        <li id="ltr">?</li>
+        <li id="ftb">?</li>
+        <li id="posZ">?</li>
+      </ul>
+    </div>
 
  <!--    <div class="wrapper">
       <div id="header" style="text-align: center;">
@@ -92,7 +132,7 @@
   </div>
   
   <div class="container" style="-webkit-perspective: 300; perspective: 300;">
-    <img src="html5_logo.png" id="imgLogo" class="logo">
+    <img src="pic.gif" id="imgLogo" class="logo">
   </div>
   
   <script type="text/javascript">
@@ -101,8 +141,23 @@
 
 
 	<script src="jquery-1.9.0.js"></script>
+  <script src="http://128.237.245.92:5555/socket.io/socket.io.js"></script>
+  <!-- // <script src="http://cdn.socket.io/stable/socket.io.js"></script> -->
 	<script src="eebae.js"></script>
   <script src="accel.js"></script>
+  <script src="form.js"></script>
+
+  <script>
+  // $( document ).ready(function() {
+
+  // var socket = io.connect('http://localhost');
+  // socket.on('news', function (data) {
+  //   console.log(data);
+  //   socket.emit('my other event', { my: 'data' });
+  // });
+  // });
+
+</script>
 
 	</body>
 </html>

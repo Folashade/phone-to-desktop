@@ -21,7 +21,7 @@
       margin-left:auto;
       margin-right:auto;  
       position: relative;
-      z-index: 2;
+      /*z-index: 2;*/
     }
     
     .logo {
@@ -189,7 +189,6 @@ This three.js demo is part of a collection at
       </table>
   </div>
 </div>
-<!-- ------------------------------------------------------------ -->
 
 <div id="ThreeJS" style="position: absolute; left:0px; top:0px"></div>
 <script>
@@ -349,10 +348,13 @@ function update()
 	if ( keyboard.pressed("up") )
 		android.translateZ( moveDistance );
 	// rotate left/right
-	if ( keyboard.pressed("left") )
-		android.rotation.y += delta;
+	if ( keyboard.pressed("left") ){
+		console.log("delta + " + delta)
+		android.rotation.y += delta*100;
+
+	}
 	if ( keyboard.pressed("right") )
-		android.rotation.y -= delta;
+		android.rotation.y -= delta*100;
 	// if ( keyboard.pressed("enter") ){
 	// 	console.log("WELCOM")
 	// 	$("#submitButton").click();

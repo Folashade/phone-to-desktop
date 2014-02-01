@@ -28,7 +28,7 @@ var local = parseInt(tmp1);
     // console.log('tilted');
 
     $("#tilted").html(local); 
-    $('body').css('background-color','purple');  
+    // $('body').css('background-color','purple');  
 
   }
     if (local<0){
@@ -38,7 +38,7 @@ var local = parseInt(tmp1);
     // console.log('tilted');
 
     $("#tilted").html(local); 
-    $('body').css('background-color','pink');  
+    // $('body').css('background-color','pink');  
 
 
 
@@ -114,8 +114,13 @@ setInterval(refresh, 500);
 
     var initPosX = android.position.z;
     var deltaX = initPosX + data.phone.phone.posX;
+<<<<<<< HEAD
     if ((deltaX >=5) && (deltaX < 1000)){}
       $("#ball").css('left', deltaX);
+=======
+    
+
+>>>>>>> 69cfb18d2f129f35f5b96066b52bf54a7f7081bb
 
     // var initPosX = $("#ball").offset().left; 
     var deltadir = data.phone.phone.posZ;
@@ -129,6 +134,7 @@ setInterval(refresh, 500);
     // if (deltaX < 990)
     //   $("#ball").css('left', deltaX);
     
+<<<<<<< HEAD
     var initPosY = android.position.z;
     var deltaY = initPosY - .01*data.phone.phone.posY;
     console.log(deltaY);
@@ -156,6 +162,56 @@ setInterval(refresh, 500);
       {var deltaX = initPosX - 25;}
     if(deltadir<=360 && deltadir>270 && (data.phone.phone.posX >= 2)) // right
       {var deltaX = initPosX + 25;}
+=======
+    var initPosZ = android.position.z;
+    var deltaZ = data.phone.phone.posY;
+    // console.log(deltaZ);
+    if ((deltaZ >=35) ){
+            // $("#ball").css('top', deltaZ);
+
+      delta = clock.getDelta(); 
+      walking = true;
+      var moveDistance = 100 * delta;
+      // console.log("i like to move it");
+      // android.translateZ(  moveDistance )
+      player1.android.translateY( moveDistance );
+    }
+    if (deltaZ <=30){
+            // $("#ball").css('top', deltaZ);
+
+            delta = clock.getDelta(); 
+      walking = true;
+      var moveDistance = 100 * delta;
+      // console.log("i like to move it");
+      // android.translateZ( -moveDistance )
+      player1.android.translateY( -.2 );
+
+    }
+    
+    var deltadir = data.phone.phone.posX;
+    console.log(deltadir);
+    if(deltadir<-5) // left
+      {var deltaX = initPosX - 25;
+
+      delta = clock.getDelta(); 
+      walking = true;
+      var moveDistance =  delta;
+      // console.log("i like to move it LEFT" + delta);
+        // android.rotation.y -= delta*5;
+        player1.android.rotateZ(.02);
+
+      }
+    if(deltadir>5) // right
+      {var deltaX = initPosX + 25;
+
+            delta = clock.getDelta(); 
+      walking = true;
+      var moveDistance = delta;
+      // console.log("i like to move it RIGHT" + delta);
+      // android.rotation.y += delta*5;
+      player1.android.rotateZ( -.02);
+}
+>>>>>>> 69cfb18d2f129f35f5b96066b52bf54a7f7081bb
 
     // console.log(deltadir)
 

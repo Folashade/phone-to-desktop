@@ -5,136 +5,137 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel=stylesheet href="css/base.css"/>
-	    <style type="text/css">
-    body {
-      font-family: sans-serif;
-    }
-  
-      .main {
-      border: 1px solid black;
-      box-shadow: 10px 10px 5px #888;
-      border-radius: 12px;
-      padding: 20px;
-      background-color: #ddd;
-      margin: 25px;
-      width: 450px;
-      margin-left:auto;
-      margin-right:auto;  
-      position: relative;
-      z-index: 2;
-    }
-    
-    .logo {
-      width:275px;
-      margin-left: auto;
-      margin-right: auto;
-      display: block;
-      padding: 15px;
-    }
-    
-    .container {
-      -webkit-perspective: 300; perspective: 300;
-    }
+	<style type="text/css">
+	body {
+		font-family: sans-serif;
+	}
 
-    #phone-data {
-      position: absolute;
-      right: 0;
-      top: 0;
-      margin: 20px;
-    }
+	.main {
+		border: 1px solid black;
+		box-shadow: 10px 10px 5px #888;
+		border-radius: 12px;
+		padding: 20px;
+		background-color: #ddd;
+		margin: 25px;
+		width: 450px;
+		margin-left:auto;
+		margin-right:auto;  
+		position: relative;
+		z-index: 2;
+	}
 
-    #phone-data li{
-      background-color: #335388;
-    }
+	.logo {
+		width:275px;
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		padding: 15px;
+	}
 
-    #ball {
-      position: fixed;
-      width: 100px;
-      height: 100px;
-      background-color: orange;
-      border-radius: 50px;
-      z-index: 100;
-      border: 1px solid #fff;
-      left: 300px;
-      top: 300px;
-      webkitTransition:all .1s ease-in;
-    }
+	.container {
+		-webkit-perspective: 300; perspective: 300;
+	}
 
-    li {
-		  position: relative;
-		  margin: 5px 5px;
-		  background-color: #00A67C;
-		  border-radius: 5px;
-		  -moz-border-radius: 5px;
-		  padding: 5px;
-		  color: #FFFFFF;
-		  font-size: 17px;
-		  line-height: 25px;
-		}
+	#phone-data {
+		position: absolute;
+		right: 0;
+		top: 0;
+		margin: 20px;
+	}
 
-		#playerList li {
-			width: 100px;
-			position: relative;
-			z-index: 100;
-		}
+	#phone-data li{
+		background-color: #335388;
+	}
 
-		#playerList li {
-			width: 100px;
-		}
+	#ball {
+		position: fixed;
+		width: 100px;
+		height: 100px;
+		background-color: orange;
+		border-radius: 50px;
+		z-index: 100;
+		border: 1px solid #fff;
+		left: 300px;
+		top: 300px;
+		webkitTransition:all .1s ease-in;
+	}
 
-		input#playerName {
-		  position: relative;
-		  z-index: 100;
-		}
+	li {
+		position: relative;
+		margin: 5px 5px;
+		background-color: #00A67C;
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		padding: 5px;
+		color: #FFFFFF;
+		font-size: 17px;
+		line-height: 25px;
+	}
 
-		#submitButton {
-		  color: #000000;
-		  background-color: #FFFFFF;
-		  border-radius: 5px;
-		  -moz-border-radius: 5px;
-		  border: none;
-		  position: relative;
-		  z-index: 100;
-		  padding: 5px;
-		}
+	#playerList li {
+		width: 100px;
+		position: relative;
+		z-index: 100;
+	}
 
-		#moveit {
-		  color: #00ff44;
-		  background-color: #FFFFFF;
-		  border-radius: 5px;
-		  -moz-border-radius: 5px;
-		  border: none;
-		  position: relative;
-		  z-index: 100;
-		  padding: 10px;
-		}
+	#playerList li {
+		width: 100px;
+	}
 
-  </style>
+	input#playerName {
+		position: relative;
+		z-index: 100;
+	}
+
+	#submitButton {
+		color: #000000;
+		background-color: #FFFFFF;
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		border: none;
+		position: relative;
+		z-index: 100;
+		padding: 5px;
+	}
+
+	#moveit {
+		color: #00ff44;
+		background-color: #FFFFFF;
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		border: none;
+		position: relative;
+		z-index: 100;
+		padding: 10px;
+	}
+
+	</style>
 </head>
 <body>
 
-<script src="js/Three.js"></script>
-<script src="js/Detector.js"></script>
-<script src="js/Stats.js"></script>
-<script src="js/OrbitControls.js"></script>
-<script src="js/THREEx.KeyboardState.js"></script>
-<script src="js/THREEx.FullScreen.js"></script>
-<script src="js/THREEx.WindowResize.js"></script>
+	<script src="js/Three.js"></script>
+	<script src="js/Detector.js"></script>
+	<script src="js/Stats.js"></script>
+	<script src="js/OrbitControls.js"></script>
+	<script src="js/THREEx.KeyboardState.js"></script>
+	<script src="js/THREEx.FullScreen.js"></script>
+	<script src="js/THREEx.WindowResize.js"></script>
+	<script src="js/howler.js"></script>
 
-<!-- Simplfied gamepad interaction (Chrome 22 patched) -->
-<script src="js/gamepad.js"></script>
-<!-- jQuery code to display an information button and box when clicked. -->
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="../androidAccel.js"></script>
-<script src="http://128.237.245.92:5000/socket.io/socket.io.js"></script>
-<!-- // <script src="http://cdn.socket.io/stable/socket.io.js"></script> -->
-<script src="../eebae.js"></script>
-<script src="../form.js"></script>
+	<!-- Simplfied gamepad interaction (Chrome 22 patched) -->
+	<script src="js/gamepad.js"></script>
+	<!-- jQuery code to display an information button and box when clicked. -->
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="../androidAccel.js"></script>
+	<script src="http://128.237.245.92:5000/socket.io/socket.io.js"></script>
+	<!-- // <script src="http://cdn.socket.io/stable/socket.io.js"></script> -->
+	<script src="../eebae.js"></script>
+	<script src="../form.js"></script>
 
-<link rel=stylesheet href="css/jquery-ui.css" />
-<link rel=stylesheet href="css/info.css"/>
-<script src="js/info.js"></script>
+	<link rel=stylesheet href="css/jquery-ui.css" />
+	<link rel=stylesheet href="css/info.css"/>
+	<script src="js/info.js"></script>
 
 <!-- <div id="infoButton"></div>
 <div id="infoBox" title="Demo Information">
@@ -148,46 +149,46 @@ Controls:
 This three.js demo is part of a collection at
 <a href="http://stemkoski.github.io/Three.js/">http://stemkoski.github.io/Three.js/</a> -->
 
-    <p> There are currently <span id="numPlayers">no</span> players.</p>
-    
-      <input type="text" id="playerName" name="playerName"></input>
-      <input type="button" id="submitButton" value="Submit"></input>
-      <input type="button" id="moveit" value="MOVE"></input>
+<p> There are currently <span id="numPlayers">no</span> players.</p>
 
-    <div id="playerList"></div>
+<input type="text" id="playerName" name="playerName"></input>
+<input type="button" id="submitButton" value="Submit"></input>
+<input type="button" id="moveit" value="MOVE"></input>
 
-    <div id="ball"></div>
+<div id="playerList"></div>
 
-    <div id="phone-data">
-      <ul>
-        <li id="none">Phone</li>
-        <li id="ltr">?</li>
-        <li id="ftb">?</li>
-        <li id="posZ">?</li>
-      </ul>
-    </div>
+<div id="ball"></div>
 
-  <div class="main">
-      <h2>Device Orientation</h2>
-      <table>
-        <tr>
-          <td>Event Supported</td>
-          <td id="doEvent"></td>
-        </tr>
-        <tr>
-          <td>Tilt Left/Right [gamma]</td>
-          <td id="doTiltLR"></td>
-        </tr>
-        <tr>
-          <td>Tilt Front/Back [beta]</td>
-          <td id="doTiltFB"></td>
-        </tr>
-        <tr>
-          <td>Direction [alpha]</td>
-          <td id="doDirection"></td>
-        </tr>
-      </table>
-  </div>
+<div id="phone-data">
+	<ul>
+		<li id="none">Phone</li>
+		<li id="ltr">?</li>
+		<li id="ftb">?</li>
+		<li id="posZ">?</li>
+	</ul>
+</div>
+
+<div class="main">
+	<h2>Device Orientation</h2>
+	<table>
+		<tr>
+			<td>Event Supported</td>
+			<td id="doEvent"></td>
+		</tr>
+		<tr>
+			<td>Tilt Left/Right [gamma]</td>
+			<td id="doTiltLR"></td>
+		</tr>
+		<tr>
+			<td>Tilt Front/Back [beta]</td>
+			<td id="doTiltFB"></td>
+		</tr>
+		<tr>
+			<td>Direction [alpha]</td>
+			<td id="doDirection"></td>
+		</tr>
+	</table>
+</div>
 </div>
 <!-- ------------------------------------------------------------ -->
 
@@ -197,7 +198,7 @@ This three.js demo is part of a collection at
 	Three.js "tutorials by example"
 	Author: Lee Stemkoski
 	Date: July 2013 (three.js v59dev)
-*/
+	*/
 
 // MAIN
 
@@ -212,19 +213,52 @@ var android;
 // the following code is from
 //    http://catchvar.com/threejs-animating-blender-models
 var animOffset       = 0,   // starting frame of animation
-	walking         = false,
+walking         = false,
 	duration        = 1000, // milliseconds to complete animation
 	keyframes       = 20,   // total number of animation frames
 	interpolation   = duration / keyframes, // milliseconds per frame
 	lastKeyframe    = 0,    // previous keyframe
 	currentKeyframe = 0;
+
+	//Sounds
+	var gameSounds = {
+		gameOver: new Howl ({ 
+			urls: ['sounds/gameOver.wav'], 
+			volume: 5
+		}),
+		opening: new Howl ({
+			urls: ['sounds/opening.wav'],
+			volume: 5
+		}),
+		gunShot: new Howl ({
+			urls: ['sounds/gunshoot.mp3'],
+			volume: 5
+		}),
+		metalShaking: new Howl ({
+			urls: ['sounds/metal-shaking.mp3'],
+			volume: 5
+		}),
+		duringGame: new Howl ({
+			urls: ['sounds/duringgame.wav'],
+			volume: 5
+		}),
+		levelUp: new Howl ({
+			urls: ['sounds/lasergunlevelup.wav'],
+			volume: 5
+		}),
+		explosion: new Howl ({
+			urls: ['sounds/explosion.wav'],
+			volume: 5
+		})
+	};
 	
-init();
-animate();
+	init();
+	animate();
 
 // FUNCTIONS 		
 function init() 
 {
+	
 	// SCENE
 	scene = new THREE.Scene();
 	// CAMERA
@@ -273,6 +307,10 @@ function init()
 	var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
 	// scene.add(skyBox);
 	scene.fog = new THREE.FogExp2( 0x9999ff, 0.00025 );
+
+
+
+
 	
 	////////////
 	// CUSTOM //
@@ -292,16 +330,24 @@ function addModelToScene( geometry, materials )
 	// for preparing animation
 	for (var i = 0; i < materials.length; i++)
 		materials[i].morphTargets = true;
-		
+
 	var material = new THREE.MeshFaceMaterial( materials );
 	android = new THREE.Mesh( geometry, material );
 	android.scale.set(10,10,10);
 	scene.add( android );
 }
 
+// when the mouse moves, call the given function
+document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
+function onDocumentMouseDown( event ) {
+	console.log("play");
+	gameSounds.gameOver.play();
+}
+
 function animate() 
 {
-    requestAnimationFrame( animate );
+	requestAnimationFrame( animate );
 	render();		
 	update();
 }
@@ -318,8 +364,8 @@ function update()
 		var pads = Gamepad.getStates();
         var pad = pads[0]; // assume only 1 player.
         if (pad) 
-		{
-			
+        {
+
 			// adjust for deadzone.
 			if (Math.abs(pad.leftStickX + pad.rightStickX) > 0.3)
 			{
@@ -333,11 +379,11 @@ function update()
 			}
 			if ( pad.faceButton0 || pad.faceButton1 || pad.faceButton2 || pad.faceButton3 || pad.select || pad.start )
 			{ 
-			    android.position.set(0,0,0);
+				android.position.set(0,0,0);
 				android.rotation.set(0,0,0);
 			}
 			
-        }
+		}
 	}
 	
 	// move forwards / backwards
@@ -385,9 +431,9 @@ function render()
 			currentKeyframe = keyframe;
 		}
 		android.morphTargetInfluences[ keyframe ] = 
-			( time % interpolation ) / interpolation;
+		( time % interpolation ) / interpolation;
 		android.morphTargetInfluences[ lastKeyframe ] = 
-			1 - android.morphTargetInfluences[ keyframe ];
+		1 - android.morphTargetInfluences[ keyframe ];
 	}
 	
 	renderer.render( scene, camera );

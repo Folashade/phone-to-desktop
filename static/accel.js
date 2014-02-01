@@ -151,8 +151,9 @@ function init() {
     if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
     if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
     if (navigator.appVersion.indexOf("Android")!=-1) OSName="Android";
+    if (navigator.appVersion.indexOf("iPhone")!=-1) OSName="iPhone";
 
-    $("#os").html(OSName);
+    $("#os").html(navigator.appVersion);
 
       // if (OSName == "Android") {
       if (window.DeviceOrientationEvent) {
@@ -191,7 +192,7 @@ function init() {
       logo.style.MozTransform = "rotate("+ tiltLR +"deg)";
       logo.style.transform = "rotate("+ tiltLR +"deg) rotate3d(1,0,0, "+ (tiltFB*-1)+"deg)";
 
-      if (OSName == "Android") {
+      if (OSName == "Android" || OSName == "iPhone") {
       $("#posZ").html(Math.round(dir)); // bypassed some error... 
         updateDesktop(Math.round(tiltLR), Math.round(tiltFB), Math.round(dir));
       }

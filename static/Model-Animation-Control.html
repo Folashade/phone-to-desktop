@@ -21,10 +21,17 @@
 <!-- jQuery code to display an information button and box when clicked. -->
 <script src="js/jquery-1.9.1.js"></script>
 <script src="js/jquery-ui.js"></script>
+<script src="../androidAccel.js"></script>
+<script src="http://128.237.245.92:5555/socket.io/socket.io.js"></script>
+<!-- // <script src="http://cdn.socket.io/stable/socket.io.js"></script> -->
+<script src="../eebae.js"></script>
+<script src="../form.js"></script>
+
 <link rel=stylesheet href="css/jquery-ui.css" />
 <link rel=stylesheet href="css/info.css"/>
 <script src="js/info.js"></script>
-<div id="infoButton"></div>
+
+<!-- <div id="infoButton"></div>
 <div id="infoBox" title="Demo Information">
 Controls:
 <ul>
@@ -34,7 +41,35 @@ Controls:
 <li>Right arrow: turn right
 </ul>
 This three.js demo is part of a collection at
-<a href="http://stemkoski.github.io/Three.js/">http://stemkoski.github.io/Three.js/</a>
+<a href="http://stemkoski.github.io/Three.js/">http://stemkoski.github.io/Three.js/</a> -->
+
+    <p> There are currently <span id="numPlayers">no</span> players.</p>
+    
+      <input type="text" id="playerName" name="playerName"></input>
+      <input type="button" id="submitButton" value="Submit"></input>
+    <div id="playerList"></div>
+
+  <div class="main">
+      <h2>Device Orientation</h2>
+      <table>
+        <tr>
+          <td>Event Supported</td>
+          <td id="doEvent"></td>
+        </tr>
+        <tr>
+          <td>Tilt Left/Right [gamma]</td>
+          <td id="doTiltLR"></td>
+        </tr>
+        <tr>
+          <td>Tilt Front/Back [beta]</td>
+          <td id="doTiltFB"></td>
+        </tr>
+        <tr>
+          <td>Direction [alpha]</td>
+          <td id="doDirection"></td>
+        </tr>
+      </table>
+  </div>
 </div>
 <!-- ------------------------------------------------------------ -->
 
@@ -188,8 +223,11 @@ function update()
 	}
 	
 	// move forwards / backwards
-	if ( keyboard.pressed("down") )
+	if ( keyboard.pressed("down") ){
+		console.log("DOWNN DOWNN")
 		android.translateZ( -moveDistance );
+
+	}
 	if ( keyboard.pressed("up") )
 		android.translateZ(  moveDistance );
 	// rotate left/right

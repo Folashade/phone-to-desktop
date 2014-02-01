@@ -5,6 +5,72 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel=stylesheet href="css/base.css"/>
+	    <style type="text/css">
+    body {
+      font-family: sans-serif;
+    }
+  
+      .main {
+      border: 1px solid black;
+      box-shadow: 10px 10px 5px #888;
+      border-radius: 12px;
+      padding: 20px;
+      background-color: #ddd;
+      margin: 25px;
+      width: 450px;
+      margin-left:auto;
+      margin-right:auto;  
+    }
+    
+    .logo {
+      width:275px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      padding: 15px;
+    }
+    
+    .container {
+      -webkit-perspective: 300; perspective: 300;
+    }
+
+    #phone-data {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 20px;
+    }
+
+    #phone-data li{
+      background-color: #335388;
+    }
+
+    #ball {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      border-radius: 50px;
+      z-index: 100;
+      border: 1px solid #fff;
+      left: 300px;
+      top: 300px;
+      webkitTransition:all .1s ease-in;
+    }
+
+    li {
+		  position: relative;
+		  margin: 5px 5px;
+		  background-color: #00A67C;
+		  border-radius: 5px;
+		  -moz-border-radius: 5px;
+		  padding: 5px;
+		  color: #FFFFFF;
+		  font-size: 17px;
+		  line-height: 25px;
+		}
+
+  </style>
 </head>
 <body>
 
@@ -48,6 +114,17 @@ This three.js demo is part of a collection at
       <input type="text" id="playerName" name="playerName"></input>
       <input type="button" id="submitButton" value="Submit"></input>
     <div id="playerList"></div>
+
+    <div id="ball"></div>
+
+    <div id="phone-data">
+      <ul>
+        <li id="none">Phone</li>
+        <li id="ltr">?</li>
+        <li id="ftb">?</li>
+        <li id="posZ">?</li>
+      </ul>
+    </div>
 
   <div class="main">
       <h2>Device Orientation</h2>

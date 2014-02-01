@@ -11,9 +11,6 @@ $( document ).ready(function() {
 
 
 
-  
-
-
 function refresh(){
 
 
@@ -55,9 +52,6 @@ setInterval(refresh, 500);
 
 
 
-
-
-
   console.log( "ready!" );
 
     var socket = io.connect('/');
@@ -81,11 +75,24 @@ setInterval(refresh, 500);
   });
 
 
+  // Form Submission
   $("#submitButton").click(function(){
     socket.emit('playerNameAdded', { playerName : $("#playerName").val()});
     console.log($("#playerName").val());
   });
 
+  if ( keyboard.pressed("enter") ){
+    console.log("NETR")
+  }
+
+  $("#playerName").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#submitButton").click();
+    }
+  });
+
+
+  // WebSockets
   socket.on('phoneDataUpdateOnPage', function (data) {
      // console.log(data);
     // console.log(data.phone.posX)

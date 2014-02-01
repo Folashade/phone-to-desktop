@@ -70,6 +70,31 @@
 		  line-height: 25px;
 		}
 
+		#playerList li {
+			width: 100px;
+			position: relative;
+			z-index: 100;
+		}
+
+		#playerList li {
+			width: 100px;
+		}
+
+		input#playerName {
+		  position: relative;
+		  z-index: 100;
+		}
+
+		#submitButton {
+		  color: #000000;
+		  background-color: #FFFFFF;
+		  border-radius: 5px;
+		  -moz-border-radius: 5px;
+		  border: none;
+		  position: relative;
+		  z-index: 100;
+		}
+
   </style>
 </head>
 <body>
@@ -312,7 +337,10 @@ function update()
 		android.rotation.y += delta;
 	if ( keyboard.pressed("right") )
 		android.rotation.y -= delta;
-	
+	// if ( keyboard.pressed("enter") ){
+	// 	console.log("WELCOM")
+	// 	$("#submitButton").click();
+	// }
 	
 	var walkingKeys = ["up", "down", "left", "right"];
 	for (var i = 0; i < walkingKeys.length; i++)

@@ -92,10 +92,11 @@ setInterval(refresh, 500);
   });
 
   $("#moveit").on('click', function(){
-      delta = clock.getDelta(); 
-  var moveDistance = 100 * delta;
-    console.log("i like to move it");
-    android.translateZ(  moveDistance )
+    //   delta = clock.getDelta(); 
+    //   walking = true;
+    // var moveDistance = 600 * delta;
+    // console.log("i like to move it");
+    // android.translateZ(  moveDistance )
   });
 
 
@@ -111,10 +112,10 @@ setInterval(refresh, 500);
 
     var winH = $(window).height();
 
-    var initPosX = $("#ball").offset().left; 
+    var initPosX = android.position.z;
     var deltaX = initPosX + data.phone.phone.posX;
-    if ((deltaX >=5) && (deltaX < 1000))
-      $("#ball").css('left', deltaX);
+    
+
 
     // var initPosX = $("#ball").offset().left; 
     var deltadir = data.phone.phone.posZ;
@@ -128,16 +129,46 @@ setInterval(refresh, 500);
     // if (deltaX < 990)
     //   $("#ball").css('left', deltaX);
     
-    var initPosY = $("#ball").offset().top; 
-    var deltaY = initPosY - 1*data.phone.phone.posY;
-    if ((deltaY >=50) && (deltaY < 730))
-      $("#ball").css('top', deltaY);
+    var initPosZ = android.position.z;
+    var deltaZ = data.phone.phone.posY;
+    console.log(deltaZ);
+    if ((deltaZ >=80) ){
+            $("#ball").css('top', deltaZ);
+
+      delta = clock.getDelta(); 
+      walking = true;
+      var moveDistance = 300 * delta;
+      // console.log("i like to move it");
+      android.translateZ(  moveDistance )
+    }
+    if (deltaZ <=70){
+            $("#ball").css('top', deltaZ);
+
+            delta = clock.getDelta(); 
+      walking = true;
+      var moveDistance = 300 * delta;
+      // console.log("i like to move it");
+      android.translateZ( -moveDistance )
+    }
     
-    var deltadir = data.phone.phone.posZ;
-    if(deltadir>0 && deltadir<170 && (data.phone.phone.posX <= 2)) // left
-      {var deltaX = initPosX - 25;}
-    if(deltadir<=360 && deltadir>270 && (data.phone.phone.posX >= 2)) // right
-      {var deltaX = initPosX + 25;}
+    var deltadir = data.phone.phone.posX;
+    if(deltadir<-5) // left
+      {var deltaX = initPosX - 25;
+
+      delta = clock.getDelta(); 
+      walking = true;
+      // var moveDistance = 300 * delta;
+      // console.log("i like to move it LEFT" + delta);
+        android.rotation.y -= delta*5;
+      }
+    if(deltadir>5) // right
+      {var deltaX = initPosX + 25;
+
+            delta = clock.getDelta(); 
+      walking = true;
+      // var moveDistance = 300 * delta;
+      // console.log("i like to move it RIGHT" + delta);
+      android.rotation.y += delta*5;}
 
     // console.log(deltadir)
 

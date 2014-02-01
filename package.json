@@ -1,0 +1,18 @@
+{
+  "name": "foo-phone-to-desktop",
+  "subdomain": "Folashade-handout",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "version": "0.0.0",
+  "dependencies": {
+  	"pg": "*",
+    "express": "latest",
+    "socket.io": "*",
+	"ws": "0.4.x"
+
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## FYI 
 + The sold button works now !!! 
 + there need to be at least one listing for the app to start
@@ -27,8 +28,13 @@
 + compute the answer
 + return query and slice math
 =======
+=======
+>>>>>>> 7bfd2d3b9f25adc44565ac01ae299568c84b5517
 phone-to-desktop
 ================
 
 Socket io Application. 
+<<<<<<< HEAD
 >>>>>>> 82de57cdc48182ecd765f20cf4469bee8976d273
+=======
+>>>>>>> 7bfd2d3b9f25adc44565ac01ae299568c84b5517

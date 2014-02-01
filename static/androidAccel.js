@@ -91,6 +91,14 @@ setInterval(refresh, 500);
     }
   });
 
+  $("#moveit").on('click', function(){
+      delta = clock.getDelta(); 
+  var moveDistance = 100 * delta;
+    console.log("i like to move it");
+    android.translateZ(  moveDistance )
+  });
+
+
 
   // WebSockets
   socket.on('phoneDataUpdateOnPage', function (data) {

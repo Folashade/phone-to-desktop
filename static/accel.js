@@ -86,6 +86,12 @@ setInterval(refresh, 500);
     console.log($("#playerName").val());
   });
 
+  $("#moveit").click(function(){
+    console.log("i like to mo");
+  });
+
+  
+
   socket.on('phoneDataUpdateOnPage', function (data) {
      // console.log(data);
     // console.log(data.phone.posX)

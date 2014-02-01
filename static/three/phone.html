@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Model Animation with Movement Controls (Three.js)</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel=stylesheet href="css/base.css"/>
+	<style type="text/css">
+    body {
+      font-family: sans-serif;
+    }
+  
+      .main {
+      border: 1px solid black;
+      box-shadow: 10px 10px 5px #888;
+      border-radius: 12px;
+      padding: 20px;
+      background-color: #ddd;
+      margin: 25px;
+      width: 50px;
+      margin-left:auto;
+      margin-right:auto;  
+      position: relative;
+      /*z-index: 2;*/
+      display: none;
+    }
+    
+    .logo {
+      width:275px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      padding: 15px;
+    }
+    
+    .container {
+      -webkit-perspective: 300; perspective: 300;
+    }
+
+    #phone-data {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 20px;
+    }
+
+    #phone-data li{
+      background-color: #335388;
+    }
+
+    #ball {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      border-radius: 50px;
+      z-index: 100;
+      border: 1px solid #fff;
+      left: 300px;
+      top: 300px;
+      webkitTransition:all .1s ease-in;
+    }
+
+    li {
+		  position: relative;
+		  margin: 5px 5px;
+		  background-color: #00A67C;
+		  border-radius: 5px;
+		  -moz-border-radius: 5px;
+		  padding: 5px;
+		  color: #FFFFFF;
+		  font-size: 17px;
+		  line-height: 25px;
+		}
+
+		#playerList li {
+			width: 100px;
+			position: relative;
+			z-index: 100;
+		}
+
+		#playerList li {
+			width: 100px;
+		}
+
+		input#playerName {
+		  position: relative;
+		  z-index: 100;
+		}
+
+		#submitButton {
+		  color: #000000;
+		  background-color: #FFFFFF;
+		  border-radius: 5px;
+		  -moz-border-radius: 5px;
+		  border: none;
+		  position: relative;
+		  z-index: 100;
+		  padding: 5px;
+		}
+
+		#moveit {
+		  color: #00ff44;
+		  background-color: #FFFFFF;
+		  border-radius: 5px;
+		  -moz-border-radius: 5px;
+		  border: none;
+		  position: relative;
+		  z-index: 100;
+		  padding: 10px;
+		}
+
+  </style>
+</head>
+<body>
+<script src="js/Three63.min.js"></script>
+<script src="js/Three.js"></script>
+<script src="js/Detector.js"></script>
+<script src="js/Stats.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/THREEx.KeyboardState.js"></script>
+<script src="js/THREEx.FullScreen.js"></script>
+<script src="js/THREEx.WindowResize.js"></script>
+<script src="js/geometries/CylinderGeometry.js"></script>
+
+<!-- Simplfied gamepad interaction (Chrome 22 patched) -->
+<script src="js/gamepad.js"></script>
+<!-- jQuery code to display an information button and box when clicked. -->
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="../androidAccel.js"></script>
+<script src="http://128.237.245.92:5000/socket.io/socket.io.js"></script>
+
+<link rel=stylesheet href="css/jquery-ui.css" />
+<link rel=stylesheet href="css/info.css"/>
+<script src="js/info.js"></script>
+
+
+
+<p> There are currently <span id="numPlayers">no</span> players.</p>
+    
+      <input type="text" id="playerName" name="playerName"></input>
+      <input type="button" id="submitButton" value="Submit"></input>
+      <input type="button" id="moveit" value="MOVE"></input>
+
+    <div id="playerList"></div>
+
+    <div id="ball"></div>
+
+    <div id="phone-data">
+      <ul>
+        <li id="none">Phone</li>
+        <li id="ltr">?</li>
+        <li id="ftb">?</li>
+        <li id="posZ">?</li>
+      </ul>
+    </div>
+
+  <div class="main">
+      <h2>Device Orientation</h2>
+      <table>
+        <tr>
+          <td>Event Supported</td>
+          <td id="doEvent"></td>
+        </tr>
+        <tr>
+          <td>Tilt Left/Right [gamma]</td>
+          <td id="doTiltLR"></td>
+        </tr>
+        <tr>
+          <td>Tilt Front/Back [beta]</td>
+          <td id="doTiltFB"></td>
+        </tr>
+        <tr>
+          <td>Direction [alpha]</td>
+          <td id="doDirection"></td>
+        </tr>
+      </table>
+  </div>
+</div>
+<!-- ------------------------------------------------------------ -->
+
+
+</script>
+
+		<div class="slider">
+		  <label id="slider-label" class="slider-label isRight"></label>
+		  <input id="slider-input" class="slider-input" type="range" min="0" value="0" max="100">
+		</div>
+</body>
+</html>

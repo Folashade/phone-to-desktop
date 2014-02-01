@@ -28,7 +28,7 @@ var local = parseInt(tmp1);
     // console.log('tilted');
 
     $("#tilted").html(local); 
-    $('body').css('background-color','purple');  
+    // $('body').css('background-color','purple');  
 
   }
     if (local<0){
@@ -38,7 +38,7 @@ var local = parseInt(tmp1);
     // console.log('tilted');
 
     $("#tilted").html(local); 
-    $('body').css('background-color','pink');  
+    // $('body').css('background-color','pink');  
 
 
 

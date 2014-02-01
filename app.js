@@ -156,6 +156,10 @@ app.get("/static/:staticFilename", function (request, response) {
     response.sendfile("static/" + request.params.staticFilename);
 });
 
+app.get("/static/three/:staticFilename", function (request, response) {
+    response.sendfile("static/" + request.params.staticFilename);
+});
+
 
 function initServer() {
   // When we start the server, we must load the stored data
@@ -172,7 +176,7 @@ initServer();
 // app.listen(5555);
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
-server.listen(process.env.PORT || 5000)
+server.listen(5555)
 
 /************* auto open window *************/
 // setTimeout(function() {

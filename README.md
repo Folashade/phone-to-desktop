@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## FYI 
 + The sold button works now !!! 
 + there need to be at least one listing for the app to start
@@ -25,3 +26,9 @@
 + get request that calls app request
 + compute the answer
 + return query and slice math
+=======
+phone-to-desktop
+================
+
+Socket io Application. 
+>>>>>>> 82de57cdc48182ecd765f20cf4469bee8976d273

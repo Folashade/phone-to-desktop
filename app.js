@@ -176,7 +176,7 @@ initServer();
 // app.listen(5555);
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
-server.listen(5555)
+server.listen(process.env.PORT || 5000)
 
 /************* auto open window *************/
 // setTimeout(function() {

@@ -131,44 +131,52 @@ setInterval(refresh, 500);
     
     var initPosZ = android.position.z;
     var deltaZ = data.phone.phone.posY;
-    console.log(deltaZ);
-    if ((deltaZ >=80) ){
-            $("#ball").css('top', deltaZ);
+    // console.log(deltaZ);
+    if ((deltaZ >=35) ){
+            // $("#ball").css('top', deltaZ);
 
       delta = clock.getDelta(); 
       walking = true;
-      var moveDistance = 300 * delta;
+      var moveDistance = 100 * delta;
       // console.log("i like to move it");
-      android.translateZ(  moveDistance )
+      // android.translateZ(  moveDistance )
+      player1.android.translateY( moveDistance );
     }
-    if (deltaZ <=70){
-            $("#ball").css('top', deltaZ);
+    if (deltaZ <=30){
+            // $("#ball").css('top', deltaZ);
 
             delta = clock.getDelta(); 
       walking = true;
-      var moveDistance = 300 * delta;
+      var moveDistance = 100 * delta;
       // console.log("i like to move it");
-      android.translateZ( -moveDistance )
+      // android.translateZ( -moveDistance )
+      player1.android.translateY( -.2 );
+
     }
     
     var deltadir = data.phone.phone.posX;
+    console.log(deltadir);
     if(deltadir<-5) // left
       {var deltaX = initPosX - 25;
 
       delta = clock.getDelta(); 
       walking = true;
-      // var moveDistance = 300 * delta;
+      var moveDistance =  delta;
       // console.log("i like to move it LEFT" + delta);
-        android.rotation.y -= delta*5;
+        // android.rotation.y -= delta*5;
+        player1.android.rotateZ(.02);
+
       }
     if(deltadir>5) // right
       {var deltaX = initPosX + 25;
 
             delta = clock.getDelta(); 
       walking = true;
-      // var moveDistance = 300 * delta;
+      var moveDistance = delta;
       // console.log("i like to move it RIGHT" + delta);
-      android.rotation.y += delta*5;}
+      // android.rotation.y += delta*5;
+      player1.android.rotateZ( -.02);
+}
 
     // console.log(deltadir)
 
